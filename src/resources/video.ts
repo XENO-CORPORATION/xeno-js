@@ -56,7 +56,7 @@ export class VideoResource {
    */
   async get(videoId: string): Promise<VideoResponse> {
     const response = await this.client._request('GET', `/video/generations/${videoId}`);
-    return response as VideoResponse;
+    return response as unknown as VideoResponse;
   }
 
   private async waitForCompletion(

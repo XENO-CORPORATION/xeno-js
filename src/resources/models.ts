@@ -13,7 +13,7 @@ export class ModelsResource {
    */
   async list(): Promise<ModelList> {
     const response = await this.client._request('GET', '/models');
-    return response as ModelList;
+    return response as unknown as ModelList;
   }
 
   /**
@@ -21,6 +21,6 @@ export class ModelsResource {
    */
   async retrieve(modelId: string): Promise<Model> {
     const response = await this.client._request('GET', `/models/${modelId}`);
-    return response as Model;
+    return response as unknown as Model;
   }
 }

@@ -1,14 +1,19 @@
 # Xeno AI JavaScript/TypeScript SDK
 
+[![npm version](https://badge.fury.io/js/xeno-ai.svg)](https://www.npmjs.com/package/xeno-ai)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 The official JavaScript/TypeScript SDK for [Xeno API](https://xeno-studio.com) - access 100+ AI models for image, video, music, and text generation with a single API.
 
 ## Installation
 
 ```bash
+# Primary package
 npm install xeno-ai
-# or
+
+# Or using yarn/pnpm
 yarn add xeno-ai
-# or
 pnpm add xeno-ai
 ```
 
@@ -45,11 +50,13 @@ const edited = await client.image.edit({
 ```
 
 ### Available Image Models
-- `flux-pro-1.1` - High quality, fast generation
-- `flux-kontext` - Image editing and variations
-- `dall-e-3` - OpenAI's DALL-E 3
-- `4o-image` - GPT-4o image generation
-- `stable-diffusion-xl` - Stability AI SDXL
+| Model | Description |
+|-------|-------------|
+| `flux-pro-1.1` | High quality, fast generation |
+| `flux-kontext` | Image editing and variations |
+| `dall-e-3` | OpenAI's DALL-E 3 |
+| `4o-image` | GPT-4o image generation |
+| `stable-diffusion-xl` | Stability AI SDXL |
 
 ## Video Generation
 
@@ -72,11 +79,13 @@ const video = await client.video.generate({
 ```
 
 ### Available Video Models
-- `veo-3.1` - Google's latest video model
-- `runway-aleph` - Runway's multi-task video model
-- `runway-gen-3` - Runway Gen-3
-- `minimax-video-01` - Minimax video generation
-- `kling-v2.1` - Kling video model
+| Model | Description |
+|-------|-------------|
+| `veo-3.1` | Google's latest video model |
+| `runway-aleph` | Runway's multi-task video model |
+| `runway-gen-3` | Runway Gen-3 |
+| `minimax-video-01` | Minimax video generation |
+| `kling-v2.1` | Kling video model |
 
 ## Music Generation
 
@@ -100,9 +109,11 @@ const music = await client.music.generate({
 ```
 
 ### Available Music Models
-- `suno-v4` - Latest Suno model
-- `suno-v3.5` - Suno v3.5
-- `udio` - Udio music generation
+| Model | Description |
+|-------|-------------|
+| `suno-v4` | Latest Suno model |
+| `suno-v3.5` | Suno v3.5 |
+| `udio` | Udio music generation |
 
 ## Chat Completions (LLM)
 
@@ -130,11 +141,14 @@ for await (const chunk of stream) {
 ```
 
 ### Available LLM Models
-- `gpt-4o` - OpenAI GPT-4o
-- `claude-3.5-sonnet` - Anthropic Claude 3.5 Sonnet
-- `claude-3-opus` - Anthropic Claude 3 Opus
-- `gemini-pro` - Google Gemini Pro
-- `llama-3.1-405b` - Meta Llama 3.1 405B
+| Model | Description |
+|-------|-------------|
+| `gpt-4o` | OpenAI GPT-4o |
+| `gpt-4-turbo` | OpenAI GPT-4 Turbo |
+| `claude-3.5-sonnet` | Anthropic Claude 3.5 Sonnet |
+| `claude-3-opus` | Anthropic Claude 3 Opus |
+| `gemini-pro` | Google Gemini Pro |
+| `llama-3.1-405b` | Meta Llama 3.1 405B |
 
 ## Error Handling
 
@@ -207,6 +221,33 @@ const image: ImageResponse = await client.image.generate({
   prompt: 'A sunset',
 });
 ```
+
+## Package Aliases
+
+This SDK is available under multiple package names on npm:
+- [`xeno-ai`](https://www.npmjs.com/package/xeno-ai) - Primary package
+- `@xeno-ai/sdk` - Scoped package (coming soon)
+
+Both packages are identical and maintained together. Choose whichever you prefer.
+
+## Links
+
+- [Documentation](https://xeno-studio.com/docs)
+- [API Reference](https://xeno-studio.com/docs/api)
+- [Dashboard](https://xeno-studio.com/dashboard)
+- [npm - xeno-ai](https://www.npmjs.com/package/xeno-ai)
+- [GitHub](https://github.com/XENO-CORPORATION/xeno-js)
+
+## Changelog
+
+### v0.1.0 (2026-01-31)
+- Initial release
+- Image generation (generate, edit, variations)
+- Video generation with async polling
+- Music generation with async polling
+- Chat completions with streaming
+- Full TypeScript support with type definitions
+- ESM and CommonJS builds
 
 ## License
 

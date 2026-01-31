@@ -41,7 +41,7 @@ export class ImageResource {
     if (seed !== undefined) payload.seed = seed;
 
     const response = await this.client._request('POST', '/images/generations', payload);
-    return { model, ...response } as ImageResponse;
+    return { model, ...response } as unknown as ImageResponse;
   }
 
   /**
@@ -68,7 +68,7 @@ export class ImageResource {
     if (mask) payload.mask = mask;
 
     const response = await this.client._request('POST', '/images/edits', payload);
-    return { model, ...response } as ImageResponse;
+    return { model, ...response } as unknown as ImageResponse;
   }
 
   /**
@@ -82,6 +82,6 @@ export class ImageResource {
 
     const payload = { model, image, n };
     const response = await this.client._request('POST', '/images/variations', payload);
-    return { model, ...response } as ImageResponse;
+    return { model, ...response } as unknown as ImageResponse;
   }
 }

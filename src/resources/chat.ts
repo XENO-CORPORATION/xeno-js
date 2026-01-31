@@ -60,7 +60,7 @@ class Completions {
     }
 
     const response = await this.client._request('POST', '/chat/completions', payload);
-    return response as ChatCompletion;
+    return response as unknown as ChatCompletion;
   }
 
   private async *streamResponse(

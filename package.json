@@ -41,11 +41,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xeno-studio/xeno-js"
+    "url": "https://github.com/XENO-CORPORATION/xeno-js"
   },
   "homepage": "https://xeno-studio.com",
   "bugs": {
-    "url": "https://github.com/xeno-studio/xeno-js/issues"
+    "url": "https://github.com/XENO-CORPORATION/xeno-js/issues"
   },
   "engines": {
     "node": ">=18"

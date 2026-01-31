@@ -58,7 +58,7 @@ export class MusicResource {
    */
   async get(musicId: string): Promise<MusicResponse> {
     const response = await this.client._request('GET', `/music/generations/${musicId}`);
-    return response as MusicResponse;
+    return response as unknown as MusicResponse;
   }
 
   private async waitForCompletion(
