@@ -1,0 +1,60 @@
+{
+  "name": "xeno-ai",
+  "version": "0.1.0",
+  "description": "Official JavaScript/TypeScript SDK for Xeno API - Access 100+ AI models for image, video, music, and text generation",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint src --ext .ts",
+    "test": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ai",
+    "api",
+    "image-generation",
+    "video-generation",
+    "music-generation",
+    "llm",
+    "flux",
+    "openai",
+    "anthropic",
+    "claude",
+    "gpt",
+    "stable-diffusion"
+  ],
+  "author": "Xeno Studio <support@xeno-studio.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xeno-studio/xeno-js"
+  },
+  "homepage": "https://xeno-studio.com",
+  "bugs": {
+    "url": "https://github.com/xeno-studio/xeno-js/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
