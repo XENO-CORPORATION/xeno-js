@@ -1,6 +1,6 @@
 {
   "name": "xeno-ai",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Official JavaScript/TypeScript SDK for Xeno API - Access 100+ AI models for image, video, music, and text generation",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
