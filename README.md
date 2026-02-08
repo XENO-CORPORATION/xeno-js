@@ -4,7 +4,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The official JavaScript/TypeScript SDK for [Xeno API](https://xeno-studio.com) - access 100+ AI models for image, video, music, and text generation with a single API.
+The official JavaScript/TypeScript SDK for [Xeno API](https://xenostudio.ai) - access 100+ AI models for image, video, music, and text generation with a single API.
 
 ## Installation
 
@@ -183,7 +183,7 @@ try {
 ```typescript
 const client = new Xeno({
   apiKey: 'your-api-key',
-  baseURL: 'https://api.xeno-studio.com/v1', // Custom endpoint
+  baseURL: 'https://api.xenostudio.ai/v1', // Custom endpoint
   timeout: 60000, // Request timeout in milliseconds
   maxRetries: 2, // Number of retries on failure
 });
@@ -198,7 +198,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   apiKey: 'your-xeno-api-key',
-  baseURL: 'https://api.xeno-studio.com/v1',
+  baseURL: 'https://api.xenostudio.ai/v1',
 });
 
 const response = await client.chat.completions.create({
@@ -232,9 +232,9 @@ Both packages are identical and maintained together. Choose whichever you prefer
 
 ## Links
 
-- [Documentation](https://xeno-studio.com/docs)
-- [API Reference](https://xeno-studio.com/docs/api)
-- [Dashboard](https://xeno-studio.com/dashboard)
+- [Documentation](https://xenostudio.ai/docs)
+- [API Reference](https://xenostudio.ai/docs/api)
+- [Dashboard](https://xenostudio.ai/dashboard)
 - [npm - xeno-ai](https://www.npmjs.com/package/xeno-ai)
 - [GitHub](https://github.com/XENO-CORPORATION/xeno-js)
 

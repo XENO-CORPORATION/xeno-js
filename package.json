@@ -37,13 +37,13 @@
     "gpt",
     "stable-diffusion"
   ],
-  "author": "Xeno Studio <support@xeno-studio.com>",
+  "author": "Xeno Studio <support@xenostudio.ai>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/XENO-CORPORATION/xeno-js"
   },
-  "homepage": "https://xeno-studio.com",
+  "homepage": "https://xenostudio.ai",
   "bugs": {
     "url": "https://github.com/XENO-CORPORATION/xeno-js/issues"
   },

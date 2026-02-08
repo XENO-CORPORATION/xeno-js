@@ -13,7 +13,7 @@ import { MusicResource } from './resources/music';
 import { ChatResource } from './resources/chat';
 import { ModelsResource } from './resources/models';
 
-const DEFAULT_BASE_URL = 'https://api.xeno-studio.com/v1';
+const DEFAULT_BASE_URL = 'https://api.xenostudio.ai/v1';
 const DEFAULT_TIMEOUT = 60000;
 
 /**
