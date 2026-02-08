@@ -4,12 +4,11 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The official JavaScript/TypeScript SDK for [Xeno API](https://xenostudio.ai) - access 100+ AI models for image, video, music, and text generation with a single API.
+The official JavaScript/TypeScript SDK for [Xeno API](https://xenostudio.ai) - access 80+ AI models for text, image, and video generation with a single API.
 
 ## Installation
 
 ```bash
-# Primary package
 npm install xeno-ai
 
 # Or using yarn/pnpm
@@ -29,12 +28,54 @@ const client = new Xeno({ apiKey: 'your-api-key' });
 const client = new Xeno();
 ```
 
+## Chat Completions (LLM)
+
+```typescript
+// Chat completion
+const response = await client.chat.completions.create({
+  model: 'claude-sonnet-4-5',
+  messages: [
+    { role: 'system', content: 'You are a helpful assistant.' },
+    { role: 'user', content: 'Explain quantum computing in simple terms.' },
+  ],
+});
+console.log(response.choices[0].message.content);
+
+// Streaming
+const stream = await client.chat.completions.create({
+  model: 'gemini-2.5-pro',
+  messages: [{ role: 'user', content: 'Write a poem about AI' }],
+  stream: true,
+});
+
+for await (const chunk of stream) {
+  process.stdout.write(chunk.choices[0].delta.content || '');
+}
+```
+
+### Available Text Models
+
+| Model | Description |
+|-------|-------------|
+| `claude-opus-4-6-thinking` | Claude Opus 4.6 with extended thinking |
+| `claude-opus-4-5-thinking` | Claude Opus 4.5 with extended thinking |
+| `claude-sonnet-4-5` | Claude Sonnet 4.5 - Fast and capable |
+| `claude-sonnet-4-5-thinking` | Claude Sonnet 4.5 with extended thinking |
+| `gemini-2.5-pro` | Gemini 2.5 Pro |
+| `gemini-2.5-flash` | Gemini 2.5 Flash - Fast responses |
+| `gemini-2.5-flash-lite` | Gemini 2.5 Flash Lite - Fastest |
+| `gemini-2.5-flash-thinking` | Gemini 2.5 Flash with thinking |
+| `gemini-3-flash` | Gemini 3 Flash |
+| `gemini-3-pro-high` | Gemini 3 Pro High quality |
+| `gemini-3-pro-image` | Gemini 3 Pro with image understanding |
+| `gemini-3-pro-low` | Gemini 3 Pro Low latency |
+
 ## Image Generation
 
 ```typescript
 // Generate an image
 const image = await client.image.generate({
-  model: 'flux-pro-1.1',
+  model: 'flux-2-max',
   prompt: 'A futuristic cityscape at sunset',
   width: 1024,
   height: 1024,
@@ -49,43 +90,115 @@ const edited = await client.image.edit({
 });
 ```
 
-### Available Image Models
+### Available Image Models (37)
+
+**Flux Models**
 | Model | Description |
 |-------|-------------|
-| `flux-pro-1.1` | High quality, fast generation |
-| `flux-kontext` | Image editing and variations |
-| `dall-e-3` | OpenAI's DALL-E 3 |
-| `4o-image` | GPT-4o image generation |
-| `stable-diffusion-xl` | Stability AI SDXL |
+| `flux-2-max` | Flux.2 Max - Highest quality |
+| `flux-2` | Flux.2 Standard |
+| `flux-2-flex` | Flux.2 Flex - Flexible aspect ratios |
+| `flux-2-klein` | Flux.2 Klein - Compact |
+| `flux-dev` | Flux Dev |
+| `flux-kontext` | Flux Kontext - Image editing |
+| `flux-kontext-high` | Flux Kontext High quality |
+| `flux-pro-plus` | Flux Pro Plus |
+| `flux-realism` | Flux Realism - Photorealistic |
+
+**GPT Image Models**
+| Model | Description |
+|-------|-------------|
+| `gpt-high` | GPT Image - High quality |
+| `gpt-medium` | GPT Image - Medium quality |
+| `gpt-1-5-high` | GPT 1.5 Image - High quality |
+| `gpt-1-5-medium` | GPT 1.5 Image - Medium quality |
+
+**Google Imagen**
+| Model | Description |
+|-------|-------------|
+| `imagen4-ultra` | Imagen 4 Ultra - Highest quality |
+| `imagen4` | Imagen 4 |
+| `imagen4-fast` | Imagen 4 Fast |
+| `imagen3` | Imagen 3 |
+
+**Other Models**
+| Model | Description |
+|-------|-------------|
+| `ideogram` | Ideogram - Text rendering |
+| `grok` | Grok image generation |
+| `qwen` | Qwen image generation |
+| `mystic-2-5` | Mystic 2.5 |
+| `reve` | Reve |
+| `runway-gen4` | Runway Gen4 |
+| `seedream-4-5` | Seedream 4.5 |
 
 ## Video Generation
 
 ```typescript
 // Generate a video
 const video = await client.video.generate({
-  model: 'veo-3.1',
+  model: 'google-veo3',
   prompt: 'A drone shot flying over mountains at sunrise',
-  duration: 5,
-  resolution: '1080p',
 });
 console.log(video.data?.[0].url);
 
 // Image to video
 const video = await client.video.generate({
-  model: 'runway-aleph',
+  model: 'kling-30',
   prompt: 'Make the water flow',
   image: 'https://example.com/landscape.jpg',
 });
 ```
 
-### Available Video Models
+### Available Video Models (34)
+
+**Google Veo**
 | Model | Description |
 |-------|-------------|
-| `veo-3.1` | Google's latest video model |
-| `runway-aleph` | Runway's multi-task video model |
-| `runway-gen-3` | Runway Gen-3 |
-| `minimax-video-01` | Minimax video generation |
-| `kling-v2.1` | Kling video model |
+| `google-veo3_1` | Google Veo 3.1 - Latest |
+| `google-veo3_1-fast` | Google Veo 3.1 Fast |
+| `google-veo3` | Google Veo 3 |
+| `google-veo3-fast` | Google Veo 3 Fast |
+| `google-veo2` | Google Veo 2 |
+
+**Kling**
+| Model | Description |
+|-------|-------------|
+| `kling-30` | Kling 3.0 - Latest |
+| `kling-26` | Kling 2.6 |
+| `kling-25` | Kling 2.5 |
+| `kling-21` | Kling 2.1 |
+| `kling-21-master` | Kling 2.1 Master |
+| `kling-omni1` | Kling Omni 1 |
+| `kling-motion-control` | Kling Motion Control |
+
+**Runway**
+| Model | Description |
+|-------|-------------|
+| `runway-gen45` | Runway Gen4.5 |
+| `runway-std` | Runway Standard |
+| `runway-act-two` | Runway Act Two |
+
+**OpenAI Sora**
+| Model | Description |
+|-------|-------------|
+| `openai-sora2-pro` | Sora 2 Pro |
+| `openai-sora2-standard` | Sora 2 Standard |
+
+**Minimax**
+| Model | Description |
+|-------|-------------|
+| `minimax-video-2_3` | Minimax Video 2.3 |
+| `minimax-video-2_3-fast` | Minimax Video 2.3 Fast |
+| `minimax-video-02` | Minimax Video 02 |
+
+**Other Models**
+| Model | Description |
+|-------|-------------|
+| `bytedance-seedance-pro-1.5` | ByteDance Seedance Pro 1.5 |
+| `wan-2-6` | Wan 2.6 |
+| `pixverse-5-5` | Pixverse 5.5 |
+| `ltx-ltx2-pro` | LTX 2 Pro |
 
 ## Music Generation
 
@@ -95,60 +208,9 @@ const music = await client.music.generate({
   model: 'suno-v4',
   prompt: 'An upbeat electronic track with synths and drums',
   duration: 120,
-  genre: 'electronic',
 });
 console.log(music.data?.[0].url);
-
-// With custom lyrics
-const music = await client.music.generate({
-  model: 'suno-v4',
-  prompt: 'A pop ballad about summer love',
-  lyrics: 'Walking on the beach, sun shining bright...',
-  duration: 180,
-});
 ```
-
-### Available Music Models
-| Model | Description |
-|-------|-------------|
-| `suno-v4` | Latest Suno model |
-| `suno-v3.5` | Suno v3.5 |
-| `udio` | Udio music generation |
-
-## Chat Completions (LLM)
-
-```typescript
-// Chat completion
-const response = await client.chat.completions.create({
-  model: 'gpt-4o',
-  messages: [
-    { role: 'system', content: 'You are a helpful assistant.' },
-    { role: 'user', content: 'Explain quantum computing in simple terms.' },
-  ],
-});
-console.log(response.choices[0].message.content);
-
-// Streaming
-const stream = await client.chat.completions.create({
-  model: 'claude-3.5-sonnet',
-  messages: [{ role: 'user', content: 'Write a poem about AI' }],
-  stream: true,
-});
-
-for await (const chunk of stream) {
-  process.stdout.write(chunk.choices[0].delta.content || '');
-}
-```
-
-### Available LLM Models
-| Model | Description |
-|-------|-------------|
-| `gpt-4o` | OpenAI GPT-4o |
-| `gpt-4-turbo` | OpenAI GPT-4 Turbo |
-| `claude-3.5-sonnet` | Anthropic Claude 3.5 Sonnet |
-| `claude-3-opus` | Anthropic Claude 3 Opus |
-| `gemini-pro` | Google Gemini Pro |
-| `llama-3.1-405b` | Meta Llama 3.1 405B |
 
 ## Error Handling
 
@@ -162,7 +224,7 @@ import Xeno, {
 
 try {
   const image = await client.image.generate({
-    model: 'flux-pro-1.1',
+    model: 'flux-2-max',
     prompt: '...',
   });
 } catch (error) {
@@ -202,7 +264,7 @@ const client = new OpenAI({
 });
 
 const response = await client.chat.completions.create({
-  model: 'gpt-4o',
+  model: 'claude-sonnet-4-5',
   messages: [{ role: 'user', content: 'Hello!' }],
 });
 ```
@@ -222,14 +284,6 @@ const image: ImageResponse = await client.image.generate({
 });
 ```
 
-## Package Aliases
-
-This SDK is available under multiple package names on npm:
-- [`xeno-ai`](https://www.npmjs.com/package/xeno-ai) - Primary package
-- `@xeno-ai/sdk` - Scoped package (coming soon)
-
-Both packages are identical and maintained together. Choose whichever you prefer.
-
 ## Links
 
 - [Documentation](https://xenostudio.ai/docs)
@@ -239,6 +293,11 @@ Both packages are identical and maintained together. Choose whichever you prefer
 - [GitHub](https://github.com/XENO-CORPORATION/xeno-js)
 
 ## Changelog
+
+### v0.1.1 (2026-02-08)
+- Updated API base URL to api.xenostudio.ai
+- Added 80+ AI models including Claude, Gemini, Flux, Veo, Kling, and more
+- Improved documentation with complete model listings
 
 ### v0.1.0 (2026-01-31)
 - Initial release
