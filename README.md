@@ -33,7 +33,7 @@ const client = new Xeno();
 ```typescript
 // Chat completion
 const response = await client.chat.completions.create({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-sonnet-4-6',
   messages: [
     { role: 'system', content: 'You are a helpful assistant.' },
     { role: 'user', content: 'Explain quantum computing in simple terms.' },
@@ -43,7 +43,7 @@ console.log(response.choices[0].message.content);
 
 // Streaming
 const stream = await client.chat.completions.create({
-  model: 'gemini-2.5-pro',
+  model: 'claude-sonnet-4-6',
   messages: [{ role: 'user', content: 'Write a poem about AI' }],
   stream: true,
 });
@@ -53,22 +53,23 @@ for await (const chunk of stream) {
 }
 ```
 
-### Available Text Models
+### Available LLM Models
 
-| Model | Description |
-|-------|-------------|
-| `claude-opus-4-6-thinking` | Claude Opus 4.6 with extended thinking |
-| `claude-opus-4-5-thinking` | Claude Opus 4.5 with extended thinking |
-| `claude-sonnet-4-5` | Claude Sonnet 4.5 - Fast and capable |
-| `claude-sonnet-4-5-thinking` | Claude Sonnet 4.5 with extended thinking |
-| `gemini-2.5-pro` | Gemini 2.5 Pro |
-| `gemini-2.5-flash` | Gemini 2.5 Flash - Fast responses |
-| `gemini-2.5-flash-lite` | Gemini 2.5 Flash Lite - Fastest |
-| `gemini-2.5-flash-thinking` | Gemini 2.5 Flash with thinking |
-| `gemini-3-flash` | Gemini 3 Flash |
-| `gemini-3-pro-high` | Gemini 3 Pro High quality |
-| `gemini-3-pro-image` | Gemini 3 Pro with image understanding |
-| `gemini-3-pro-low` | Gemini 3 Pro Low latency |
+| Model | Provider | Description | Credits/1K |
+|-------|----------|-------------|------------|
+| `claude-opus-4-6` | Anthropic | Most capable, 1M context | 0.30 |
+| `claude-opus-4-6-thinking` | Anthropic | Opus 4.6 + extended thinking | 0.35 |
+| `claude-sonnet-4-6` | Anthropic | Fast, capable, 1M context | 0.08 |
+| `claude-sonnet-4-6-thinking` | Anthropic | Sonnet 4.6 + extended thinking | 0.15 |
+| `claude-haiku-4-5-20251001` | Anthropic | Fastest, cheapest | 0.02 |
+| `gpt-5` | OpenAI | General GPT-5 | 0.30 |
+| `gpt-5-codex` | OpenAI | Coding-specialized GPT-5 | 0.30 |
+| `gemini-3-pro-high` | Google | Highest quality | 0.10 |
+| `gemini-3-flash` | Google | Ultra-fast | 0.02 |
+| `gemini-2.5-flash` | Google | Fast, optimized | 0.02 |
+| `kimi-k2` | Moonshot | Reasoning model | 0.05 |
+
+> Run `GET /v1/models` for the full dynamic model list.
 
 ## Image Generation
 
@@ -212,6 +213,13 @@ const music = await client.music.generate({
 console.log(music.data?.[0].url);
 ```
 
+### Available Music Models
+| Model | Description |
+|-------|-------------|
+| `suno-v4` | Latest Suno model |
+| `suno-v3.5` | Suno v3.5 |
+| `udio` | Udio music generation |
+
 ## Error Handling
 
 ```typescript
@@ -264,7 +272,7 @@ const client = new OpenAI({
 });
 
 const response = await client.chat.completions.create({
-  model: 'claude-sonnet-4-5',
+  model: 'claude-sonnet-4-6',
   messages: [{ role: 'user', content: 'Hello!' }],
 });
 ```
